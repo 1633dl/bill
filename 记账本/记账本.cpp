@@ -2,36 +2,36 @@
 #include<fstream>
 #include"manager.h"
 using namespace std;
-//Ä¿±ê£º
-//Ã¿Ìì¶¼Ğ´ÕËµ¥£¬ÏÔÊ¾³ö¼¸ÔÂ¼¸ºÅ£¬Ã¿±Ê»¨ÏúµÄÏêÏ¸£¬Ã¿Ìì×îºó¶¼ÓĞ¸ö×Ü¼Æ
-//Ã¿ÔÂ»¨ÁË¶àÉÙÇ®
-
-//ÏÔÊ¾²Ëµ¥
+//ç›®æ ‡ï¼š
+//æ¯å¤©éƒ½å†™è´¦å•ï¼Œæ˜¾ç¤ºå‡ºå‡ æœˆå‡ å·ï¼Œæ¯ç¬”èŠ±é”€çš„è¯¦ç»†ï¼Œæ¯å¤©æœ€åéƒ½æœ‰ä¸ªæ€»è®¡
+//æ¯æœˆèŠ±äº†å¤šå°‘é’±
+//ç›®å‰è¿˜æ²¡æœ‰å¯¹äº2æœˆä»½å¤©æ•°çš„åˆ¤æ–­ï¼Œé»˜è®¤2æœˆä»½æ˜¯28å¤©
+//æ˜¾ç¤ºèœå•
 void show_menu()
 {
-	cout << "1¡¢ÏÔÊ¾Ö®Ç°ÕËµ¥" << endl;
-	cout << "2¡¢¿ªÊ¼¼ÇÂ¼»¨Ïú" << endl;
-	cout << "3¡¢ÍË³öÕËµ¥" << endl;
+	cout << "1ã€æ˜¾ç¤ºä¹‹å‰è´¦å•" << endl;
+	cout << "2ã€å¼€å§‹è®°å½•èŠ±é”€" << endl;
+	cout << "3ã€é€€å‡ºè´¦å•" << endl;
 }
 void read_txt(manager mm[12])
 {
-	manager temp;//ÁÙÊ±µÄÀà
-	int t_day;//ÁÙÊ±µÄÌìÊı
+	manager temp;//ä¸´æ—¶çš„ç±»
+	int t_day;//ä¸´æ—¶çš„å¤©æ•°
 	ifstream ifs;
 	ifs.open(FILENAME, ios::in);
-	int month;//¼ÇÂ¼µÄÔÂ·İ
-	string a;//¼ÇÂ¼Ê¡ÂÔºÅ
+	int month;//è®°å½•çš„æœˆä»½
+	string a;//è®°å½•çœç•¥å·
 	float breakfrast, lunch, dinner, juice, online, market, sum;
 	if (ifs.is_open())
 	{
-		cout << "¶ÁÈ¡³É¹¦!" << endl;
+		cout << "è¯»å–æˆåŠŸ!" << endl;
 		while (ifs >> month&&ifs >> a)
 		{
-			temp.month = month;//Í¬²½ÔÂ·İ
-			temp.is_begin = true;//ÓÃÓÚÕ¹Ê¾ÕËµ¥showº¯Êı
+			temp.month = month;//åŒæ­¥æœˆä»½
+			temp.is_begin = true;//ç”¨äºå±•ç¤ºè´¦å•showå‡½æ•°
 			switch (month)
 			{
-				//Í¬²½×î´óÌìÊı£¬²¢´´½¨Ò»¸öĞÂµÄpersonÊı×é
+				//åŒæ­¥æœ€å¤§å¤©æ•°ï¼Œå¹¶åˆ›å»ºä¸€ä¸ªæ–°çš„personæ•°ç»„
 			case 1:case 3:case 5:case 7: case 8:case 10:case 12:
 				temp.m_day = 31;
 				temp.bill = new person[31];
@@ -56,24 +56,24 @@ void read_txt(manager mm[12])
 				temp.bill[i].juice = juice;
 				temp.bill[i].online = online;
 				temp.bill[i].market = market;
-				temp.sum += sum;//×Ü¼ÆµÄÍ¬²½
+				temp.sum += sum;//æ€»è®¡çš„åŒæ­¥
 				i++;
-				if (i == temp.m_day)//ÕâÒ»¸öÔÂÒÑ¾­¶ÁÈ¡Íê±Ï
+				if (i == temp.m_day)//è¿™ä¸€ä¸ªæœˆå·²ç»è¯»å–å®Œæ¯•
 					break;
 			}
-			temp.day = i;//Í¬²½ÈÕÆÚ
+			temp.day = i;//åŒæ­¥æ—¥æœŸ
 			mm[temp.month-1] = temp;
 		}
 	}
 	else
 	{
-		cout << "ÎÄ¼ş»¹Î´´´½¨!" << endl;
+		cout << "æ–‡ä»¶è¿˜æœªåˆ›å»º!" << endl;
 	}
 	ifs.close();
 }
 int select_m(int month)
 {
-	cout << "ÇëÊäÈëÄãÒª²éÑ¯µÄÔÂ·İ:" << endl;
+	cout << "è¯·è¾“å…¥ä½ è¦æŸ¥è¯¢çš„æœˆä»½:" << endl;
 	cin >> month;
 	return month;
 }
@@ -96,7 +96,7 @@ int main()
 			system("pause");
 			exit(1);
 		}
-		month = select_m(month);//Ñ¡Ôñ²é¿´µÄÔÂ·İ
+		month = select_m(month);//é€‰æ‹©æŸ¥çœ‹çš„æœˆä»½
 		switch (choice)
 		{
 		case 1:
